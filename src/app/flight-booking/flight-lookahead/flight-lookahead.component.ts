@@ -5,8 +5,8 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { combineLatest, interval, merge, Observable, of, Subject } from 'rxjs';
 import { catchError, distinctUntilChanged, filter, map, pairwise, retry, startWith, switchMap, tap } from 'rxjs/operators';
 
-import { Flight } from '../entities/flight';
-import { handleInput } from '../shared/operators/handle-input';
+import { Flight } from '../../entities/flight';
+import { handleInput } from '../../shared/operators/handle-input';
 
 @Component({
   selector: 'app-flight-lookahead',
