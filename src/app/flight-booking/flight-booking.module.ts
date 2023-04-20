@@ -8,6 +8,7 @@ import { AirportsComponent } from './airports/airports.component';
 import { FlightCardComponent } from './flight-card/flight-card.component';
 import { FlightStatusToggleComponent } from './flight-status-toggle/flight-status-toggle.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
+import { FlightValidationErrorsComponent } from './flight-validation-errors/flight-validation-errors.component';
 
 @NgModule({
   imports: [SharedModule],
@@ -17,7 +18,8 @@ import { BookingHistoryComponent } from './booking-history/booking-history.compo
     AirportsComponent,
     BookingHistoryComponent,
     FlightCardComponent,
-    FlightStatusToggleComponent
+    FlightStatusToggleComponent,
+    FlightValidationErrorsComponent
   ],
   exports: [SharedModule, FlightSearchComponent, FlightLookaheadComponent, AirportsComponent, BookingHistoryComponent]
 })
