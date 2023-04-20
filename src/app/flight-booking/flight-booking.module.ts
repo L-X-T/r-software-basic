@@ -9,6 +9,7 @@ import { FlightCardComponent } from './flight-card/flight-card.component';
 import { FlightStatusToggleComponent } from './flight-status-toggle/flight-status-toggle.component';
 import { BookingHistoryComponent } from './booking-history/booking-history.component';
 import { FlightValidationErrorsComponent } from './flight-validation-errors/flight-validation-errors.component';
+import { CityValidatorDirective } from './shared/validation/city-validator.directive';
 
 @NgModule({
   imports: [SharedModule],
@@ -19,7 +20,8 @@ import { FlightValidationErrorsComponent } from './flight-validation-errors/flig
     BookingHistoryComponent,
     FlightCardComponent,
     FlightStatusToggleComponent,
-    FlightValidationErrorsComponent
+    FlightValidationErrorsComponent,
+    CityValidatorDirective
   ],
   exports: [SharedModule, FlightSearchComponent, FlightLookaheadComponent, AirportsComponent, BookingHistoryComponent]
 })
