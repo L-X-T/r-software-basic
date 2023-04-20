@@ -7,6 +7,11 @@ import { FlightLookaheadComponent } from './flight-lookahead/flight-lookahead.co
 
 const flightBookingRoutes: Routes = [
   {
+    path: '',
+    redirectTo: 'flight-search',
+    pathMatch: 'full'
+  },
+  {
     path: 'flight-edit/:id',
     component: FlightEditComponent
   },
