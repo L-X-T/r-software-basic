@@ -11,6 +11,7 @@ import { FlightValidationErrorsComponent } from './flight-validation-errors/flig
 import { CityValidatorDirective } from './shared/validation/city-validator.directive';
 import { AsyncCityValidatorDirective } from './shared/validation/async-city-validator.directive';
 import { MultiFieldValidatorDirective } from './shared/validation/multi-field-validator.directive';
+import { AsyncMultiFieldValidatorDirective } from './shared/validation/async-multi-field-validator.directive';
 
 @NgModule({
   imports: [SharedModule],
@@ -23,7 +24,8 @@ import { MultiFieldValidatorDirective } from './shared/validation/multi-field-va
     FlightValidationErrorsComponent,
     CityValidatorDirective,
     AsyncCityValidatorDirective,
-    MultiFieldValidatorDirective
+    MultiFieldValidatorDirective,
+    AsyncMultiFieldValidatorDirective
   ],
   exports: [SharedModule, FlightSearchComponent, FlightLookaheadComponent, AirportsComponent]
 })
