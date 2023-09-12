@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 import { combineLatest, interval, merge, Observable, of, Subject } from 'rxjs';
 import { catchError, distinctUntilChanged, filter, map, pairwise, retry, startWith, switchMap, tap } from 'rxjs/operators';
@@ -9,6 +10,8 @@ import { Flight } from '../../entities/flight';
 import { handleInput } from '../../shared/operators/handle-input';
 
 @Component({
+  standalone: true,
+  imports: [CommonModule, ReactiveFormsModule],
   selector: 'app-flight-lookahead',
   templateUrl: './flight-lookahead.component.html',
   styleUrls: ['./flight-lookahead.component.css']
