@@ -1,12 +1,12 @@
 # Angular Components
 
 - [Angular Components](#angular-components)
-  - [Components deep dive](#components-deep-dive)
+  - [Components Data Binding](#components-data-binding)
     - [FlightCardComponent](#flightcardcomponent)
     - [FlightStatusToggleComponent \*\*](#flightstatustogglecomponent-)
     - [Bonus: Content Projection \*\*](#bonus-content-projection-)
 
-## Components deep dive
+## Components Data Binding
 
 In this exercise you will first create the FlightCardComponent shown. Then you will create your own component with the knowledge you have built up in a bonus exercise. For the sake of experience we'll not use the `ng generate` command and instead create the component manually.
 
