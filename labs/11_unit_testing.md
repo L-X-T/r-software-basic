@@ -111,7 +111,7 @@ Start your test with the command `npm test`.
      beforeEach(async () => {
        […]
      });
-   
+
      it('should not have any flights loaded initially', () => {
        expect(component.flights.length).toBe(0);
      });
@@ -119,7 +119,7 @@ Start your test with the command `npm test`.
      it('should load flights when user entered from and to', () => {
        component.from = 'Graz';
        component.to = 'Hamburg';
-       component.onSearch();
+       component.search();
 
        const httpTestingController = TestBed.inject(HttpTestingController);
        const req = httpTestingController.expectOne(
@@ -159,7 +159,7 @@ Follow the steps below:
 1. Open the file `flight-search.component.ts` and extend the `search` method by a simple validation logic which will be tested in the Unit-Test afterwards:
 
    ```typescript
-   onSearch(): void {
+   search(): void {
      if (!this.from || !this.to) {
        return;
      }
@@ -284,7 +284,7 @@ Follow the steps below:
      it('should not load flights w/o from and to', () => {
        component.from = '';
        component.to = '';
-       component.onSearch();
+       component.search();
 
        expect(component.flights.length).toBe(0);
      });
@@ -292,7 +292,7 @@ Follow the steps below:
      it('should load flights w/ from and to', () => {
        component.from = 'Hamburg';
        component.to = 'Graz';
-       component.onSearch();
+       component.search();
 
        expect(component.flights.length).toBeGreaterThan(0);
      });

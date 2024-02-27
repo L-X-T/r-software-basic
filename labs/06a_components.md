@@ -96,7 +96,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
      from = '';
      to = '';
      flights: Flight[] = [];
-     selectedFlight: Flight | null = null;
+     selectedFlight?: Flight;
 
      basket: { [id: number]: boolean } = { // <-- new attribute
        3: true,

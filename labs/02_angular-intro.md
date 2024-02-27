@@ -74,9 +74,9 @@ In this first part of the exercise you will implement the _FlightSearchComponent
      from = '';
      to = '';
      flights: Flight[] = [];
-     selectedFlight: Flight | null = null;
+     selectedFlight?: Flight;
 
-     constructor(private http: HttpClient) {}
+     private readonly http = inject(HttpClient);
 
      search(): void {
        // implementation will follow shortly
@@ -183,7 +183,7 @@ In this first part of the exercise you will implement the _FlightSearchComponent
 
    ```html
    <div class="card">
-     <table class="table table-contensed">
+     <table class="table table-condensed">
        <thead>
          <tr>
            <th>Id</th>
