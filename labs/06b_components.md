@@ -1,16 +1,16 @@
 # Components Deep Dive
 
 - [Components Deep Dive](#components-deep-dive)
-    - [Getting Started](#getting-started)
-    - [Content and View](#content-and-view)
-        - [Content Projection](#content-projection)
-        - [Referencing the Parent Component](#referencing-the-parent-component)
-        - [Interacting with a Component's Content](#interacting-with-a-components-content)
-        - [Interacting with a Component's View](#interacting-with-a-components-view)
-            - [Creating a TabNavigatorComponent](#creating-a-tabnavigatorcomponent)
-            - [Using Template Variables](#using-template-variables)
-            - [Bonus: Directly Accessing a ViewChild \*](#bonus-directly-accessing-a-viewchild-)
-            - [Bonus: Communicating via Services \*](#bonus-communicating-via-services-)
+  - [Getting Started](#getting-started)
+  - [Content and View](#content-and-view)
+    - [Content Projection](#content-projection)
+    - [Referencing the Parent Component](#referencing-the-parent-component)
+    - [Interacting with a Component's Content](#interacting-with-a-components-content)
+    - [Interacting with a Component's View](#interacting-with-a-components-view)
+      - [Creating a TabNavigatorComponent](#creating-a-tabnavigatorcomponent)
+      - [Using Template Variables](#using-template-variables)
+      - [Bonus: Directly Accessing a ViewChild \*](#bonus-directly-accessing-a-viewchild-)
+      - [Bonus: Communicating via Services \*](#bonus-communicating-via-services-)
 
 ## Getting Started
 
@@ -93,7 +93,7 @@ For this lab, we will create a new standalone component `BookingHistoryComponent
      [...],
    ];
    ```
-   
+
    Please make sure that the catchall route `path: '**'` is still the last route.
 
 6. Start your application (if it is still running then restart it) and try it out.
@@ -172,21 +172,21 @@ In this part of the lab, you will implement a tabbed pane. We use it to demonstr
 
 The goal of this lab is to group the tabs with a tabbed-pane. Also, the tabbed-pane shall make sure that only one tab is displayed at a time and display links for switching between them:
 
-   ```html
-   <app-tabbed-pane>
-     <app-tab title="Upcoming Flights">
-       <p>No upcoming flights!</p>
-     </app-tab>
-   
-     <app-tab title="Operated Flights">
-       <p>No operated flights!</p>
-     </app-tab>
-   
-     <app-tab title="Cancelled Flights">
-       <p>No cancelled flights!</p>
-     </app-tab>
-   </app-tabbed-pane>
-   ```
+```html
+<app-tabbed-pane>
+  <app-tab title="Upcoming Flights">
+    <p>No upcoming flights!</p>
+  </app-tab>
+
+  <app-tab title="Operated Flights">
+    <p>No operated flights!</p>
+  </app-tab>
+
+  <app-tab title="Cancelled Flights">
+    <p>No cancelled flights!</p>
+  </app-tab>
+</app-tabbed-pane>
+```
 
 1. Open the file `tabbed-pane.component.ts` and extend it as follows:
 
@@ -514,21 +514,21 @@ Now, let's interact with the `TabbedPane`'s view using `ViewChild`.
 
 Open the file `tabbed-pane.component.html` and introduce a template variable for the `app-tab-navigator` using `#navigator`. Use this template variable to display the current page and to provide two additional buttons for navigating between the tabs (using the `prev` and `next` method):
 
-   ```html
-   <!-- src/app/shared/controls/tabbed-pane/tabbed-pane.component.html -->
-   
-   <div class="tabbed-pane">
-     [...]
-   
-     <app-tab-navigator #navigator [page]="currentPage" [pageCount]="this.tabs.length" (pageChange)="pageChange($event)" />
-   
-     <div>
-       <button (click)="navigator.prev()">Prev</button>
-       {{ navigator.page }}
-       <button (click)="navigator.next()">Next</button>
-     </div>
-   </div>
-   ```
+```html
+<!-- src/app/shared/controls/tabbed-pane/tabbed-pane.component.html -->
+
+<div class="tabbed-pane">
+  [...]
+
+  <app-tab-navigator #navigator [page]="currentPage" [pageCount]="this.tabs.length" (pageChange)="pageChange($event)" />
+
+  <div>
+    <button (click)="navigator.prev()">Prev</button>
+    {{ navigator.page }}
+    <button (click)="navigator.next()">Next</button>
+  </div>
+</div>
+```
 
 #### Bonus: Directly Accessing a ViewChild \*
 

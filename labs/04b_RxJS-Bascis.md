@@ -1,18 +1,19 @@
 # RxJS Basics
 
 <!-- TOC -->
-* [RxJS Basics](#rxjs-basics)
-  * [Preparation: Airport component](#preparation-airport-component)
-  * [Observable and Observer](#observable-and-observer)
-  * [Closing the Observable](#closing-the-observable)
-    * [1. Unsubscribe with Subscription](#1-unsubscribe-with-subscription)
-    * [2. Unsubscribe with takeUntil Subject](#2-unsubscribe-with-takeuntil-subject)
-    * [3. Using the async pipe](#3-using-the-async-pipe)
-  * [Bonus: Use takeUntilDestroyed Pipe *](#bonus-use-takeuntildestroyed-pipe-)
-  * [Bonus: Share Hot Observable *](#bonus-share-hot-observable-)
-  * [Bonus: Add delays and show a loading state **](#bonus-add-delays-and-show-a-loading-state-)
-  * [Bonus: Add basic Error Handling ***](#bonus-add-basic-error-handling-)
-<!-- TOC -->
+
+- [RxJS Basics](#rxjs-basics)
+  - [Preparation: Airport component](#preparation-airport-component)
+  - [Observable and Observer](#observable-and-observer)
+  - [Closing the Observable](#closing-the-observable)
+    - [1. Unsubscribe with Subscription](#1-unsubscribe-with-subscription)
+    - [2. Unsubscribe with takeUntil Subject](#2-unsubscribe-with-takeuntil-subject)
+    - [3. Using the async pipe](#3-using-the-async-pipe)
+  - [Bonus: Use takeUntilDestroyed Pipe \*](#bonus-use-takeuntildestroyed-pipe-)
+  - [Bonus: Share Hot Observable \*](#bonus-share-hot-observable-)
+  - [Bonus: Add delays and show a loading state \*\*](#bonus-add-delays-and-show-a-loading-state-)
+  - [Bonus: Add basic Error Handling \*\*\*](#bonus-add-basic-error-handling-)
+  <!-- TOC -->
 
 ## Preparation: Airport component
 
@@ -22,15 +23,16 @@ Please note that the returned data is just an array with strings. For data acces
 
 You can follow these steps:
 
-1. Start by creating your new `AirportComponent` in your project's root.
+1. Start by creating your new `AirportsComponent` in your project's root.
 
    **Hint**: To generate the files needed, run the following command (or it's shorthand) in your project's root:
+
    ```
-   ng generate component airport
+   ng generate component airports
    ```
-   
+
    ```
-   ng g c airport
+   ng g c airports
    ```
 
 2. Implement these files in the same way as the files for the `FlightSearchComponent` so that they will later list all the airports.
@@ -40,13 +42,14 @@ You can follow these steps:
 
    ```typescript
    import { Component, inject, OnInit } from '@angular/core';
+
    import { AirportService } from './airport.service';
 
    @Component({
-     selector: 'app-airport',
-     templateUrl: './airport.component.html'
+     selector: 'app-airports',
+     templateUrl: './airports.component.html'
    })
-   export class AirportComponent implements OnInit {
+   export class AirportsComponent implements OnInit {
      airports: string[] = [];
 
      private airportService = inject(AirportService);
@@ -71,37 +74,35 @@ You can follow these steps:
      <div class="header">
        <h1 class="title">Airports</h1>
      </div>
-   
+
      <div class="content">
        <div class="row">
-         <div *ngFor="let airport of airports" class="col-lg-3">
-           {{ airport }}
-         </div>
+         <div *ngFor="let airport of airports" class="col-lg-3">{{ airport }}</div>
        </div>
      </div>
-   </div>    
+   </div>
    ```
 
    </p>
    </details>
 
-2. Consider the Web API at `http://www.angular.at/api/airport` (if you need a secure URL try this one: `https://demo.angulararchitects.io/api/Airport`). Note that this Web API responds with either XML or JSON, and the answer is just an **array of strings**.
+3. Consider the Web API at `http://www.angular.at/api/airport` (if you need a secure URL try this one: `https://demo.angulararchitects.io/api/Airport`). Note that this Web API responds with either XML or JSON, and the answer is just an **array of strings**.
 
-    An example of the JSON-based answer can be found here: http://www.angular.at/help. While the XML response uses Pascal-Case (eg ` From`), the JSON response uses the usual Camel case (eg ` from`). Thus, the practices of the two standards are taken into account.
+   An example of the JSON-based answer can be found here: http://www.angular.at/help. While the XML response uses Pascal-Case (eg ` From`), the JSON response uses the usual Camel case (eg ` from`). Thus, the practices of the two standards are taken into account.
 
-3. In your project, create a `airport/airport.service.ts` file with a `AirportService` class:
-   
-   ```
-   ng generate service airport/airport
-   ```
+4. In your project, create a `airports/airport.service.ts` file with a `AirportService` class:
 
    ```
-   ng g s airport/airport
+   ng generate service airports/airport
    ```
-   
-   Similar to `FlightService` this class should offer the possibility to search for airports. For this, create a method findAll that returns a ``Observable<string[]>`` with the airport names:
 
-   ``findAll(): Observable<string[]>``
+   ```
+   ng g s airports/airport
+   ```
+
+   Similar to `FlightService` this class should offer the possibility to search for airports. For this, create a method findAll that returns a `Observable<string[]>` with the airport names:
+
+   `findAll(): Observable<string[]>`
 
    **Attention:** The web API at http://www.angular.at/api/airport returns all airports as an array with string. This string contains the names of the airports. That's why you do not need an interface to represent airports.
 
@@ -112,17 +113,19 @@ You can follow these steps:
    ```typescript
    import { inject, Injectable } from '@angular/core';
    import { HttpClient } from '@angular/common/http';
+
    import { Observable } from 'rxjs';
 
    @Injectable({
      providedIn: 'root'
    })
    export class AirportService {
-     private httpClient = inject(HttpClient);
+     private readonly url = 'http://www.angular.at/api/airport';
+
+     private readonly httpClient = inject(HttpClient);
 
      findAll(): Observable<string[]> {
-       const url = 'http://www.angular.at/api/airport';
-       return this.httpClient.get<string[]>(url);
+       return this.httpClient.get<string[]>(this.url);
      }
    }
    ```
@@ -130,18 +133,18 @@ You can follow these steps:
    </p>
    </details>
 
-4. Switch to the file _app.component.html_, and temporarily switch to the new component:
+5. Switch to the file _app.component.html_, and temporarily switch to the new component:
 
-    ```html
-    […]
-    <div class="content">
-      <!--<app-flight-search />-->
-      <app-airports />
-    </div>
-    […]
-    ```
+   ```html
+   […]
+   <div class="content">
+     <!--<app-flight-search />-->
+     <app-airports />
+   </div>
+   […]
+   ```
 
-5. Test your solution.
+6. Test your solution.
 
 ## Observable and Observer
 
@@ -153,7 +156,7 @@ Now we want to explicitly declare the `Observable` and the `Observer`. Add two m
   airportsObserver?: Observer<string[]>;
 ```
 
-Make sure you've added the import of `Observable` and  `Observer` from `rxjs`. In your `ngOnInit` component lifecylce hook assign the `Observable` you get from the service to the component member in a first step. Then create an `Observer` as a second step. You can, if you want, add a (dummy) error handling and a complete function to your `Observer`. Finally subscribe to the `Observable` with the created `Observer`.
+Make sure you've added the import of `Observable` and `Observer` from `rxjs`. In your `ngOnInit` component lifecylce hook assign the `Observable` you get from the service to the component member in a first step. Then create an `Observer` as a second step. You can, if you want, add a (dummy) error handling and a complete function to your `Observer`. Finally subscribe to the `Observable` with the created `Observer`.
 
 <details>
 <summary>Show code</summary>
@@ -229,7 +232,6 @@ This approach is useful when you have a lot of `Subscriptions` in your component
 
 First let's add a `Subject` to the component members:
 
-
 ```typescript
   airportsSubscription?: Subscription; // already there
 
@@ -280,15 +282,13 @@ Import `takeUntil` from `rxjs/operators`. Now let's show this airports in anothe
   <div class="header">
     <h1 class="title">Take Until Airports</h1>
   </div>
-     
+
   <div class="content">
     <div class="row">
-      <div *ngFor="let airport of takeUntilAirports" class="col-lg-3">
-        {{ airport }}
-      </div>
+      <div *ngFor="let airport of takeUntilAirports" class="col-lg-3">{{ airport }}</div>
     </div>
   </div>
-</div>    
+</div>
 ```
 
 </p>
@@ -309,15 +309,13 @@ In the third and last approach we'll use the Angular `async` Pipe. We don't need
   <div class="header">
     <h1 class="title">Async Airports</h1>
   </div>
-   
+
   <div class="content">
     <div class="row">
-      <div *ngFor="let airport of airports" class="col-lg-3">
-        {{ airport }}
-      </div>
+      <div *ngFor="let airport of airports" class="col-lg-3">{{ airport }}</div>
     </div>
   </div>
-</div>    
+</div>
 ```
 
 </p>
@@ -326,20 +324,18 @@ In the third and last approach we'll use the Angular `async` Pipe. We don't need
 Now all we need to do is replace the `airports` with our `Observable` and then add the `async` Pipe right after that.
 
 ```html
-      <div class="col-lg-3" *ngFor="let airport of airports$ | async">
-        {{ airport }}
-      </div>
+<div class="col-lg-3" *ngFor="let airport of airports$ | async">{{ airport }}</div>
 ```
 
 Test your solution.
 
 Now Angular takes care of subscribing and unsubscribing of its own. That was quite easy, huh? That's why the Angular `async` Pipe was invented: To make our live easier. But there will be cases when you will need to subscribe and unsubscribe yourself.
 
-## Bonus: Use takeUntilDestroyed Pipe *
+## Bonus: Use takeUntilDestroyed Pipe \*
 
 Instead of the approach with the `takeUntil` pipe and the `Subject` try using Angular 16's `takeUntilDestroyed` pipe.
 
-## Bonus: Share Hot Observable *
+## Bonus: Share Hot Observable \*
 
 Open the chrome dev tools and notice that we do the API call three times: Once for every subscription. Try sharing the same observable for the three variants by creating a Hot Observable. You can use `share()` operator to achieve this.
 
@@ -347,7 +343,7 @@ Open the chrome dev tools and notice that we do the API call three times: Once f
 this.airports$ = this.airportService.findAll().pipe(share());
 ```
 
-## Bonus: Add delays and show a loading state **
+## Bonus: Add delays and show a loading state \*\*
 
 In this bonus task add a delay to the observable to simulate a slow API / backend:
 
@@ -364,12 +360,9 @@ Import `delay` from `rxjs/operators`. Now add a flag that shows a loading indica
 <p>
 
 ```html
-
 <div class="content">
   <div *ngIf="(airports$ | async) as asyncAirports else isLoadingAsyncAirports" class="row">
-    <div *ngFor="let airport of asyncAirports" class="col-lg-3">
-      {{ airport }}
-    </div>
+    <div *ngFor="let airport of asyncAirports" class="col-lg-3">{{ airport }}</div>
   </div>
 </div>
 
@@ -377,19 +370,15 @@ Import `delay` from `rxjs/operators`. Now add a flag that shows a loading indica
 
 <ng-template #isLoadingAsyncAirports>
   <div class="row">
-    <div class="col-lg-3">
-      ...isLoadingAsyncPipe
-    </div>
+    <div class="col-lg-3">...isLoadingAsyncPipe</div>
   </div>
 </ng-template>
-
-
 ```
 
 </p>
 </details>
 
-## Bonus: Add basic Error Handling ***
+## Bonus: Add basic Error Handling \*\*\*
 
 In the next step try to add an error handling. You can cause an error by simply changing the request URL. Again add flags for variant 1 & 2 and think about how to add an error handling in the 3rd variant.
 
