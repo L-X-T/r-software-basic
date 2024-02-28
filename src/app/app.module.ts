@@ -8,10 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { CityPipe } from './shared/pipes/city.pipe';
+import { AirportsComponent } from './airports/airports.component';
 
 @NgModule({
   imports: [BrowserModule, HttpClientModule, FormsModule],
-  declarations: [AppComponent, SidebarComponent, NavbarComponent, FlightSearchComponent, CityPipe],
+  declarations: [AppComponent, SidebarComponent, NavbarComponent, FlightSearchComponent, CityPipe, AirportsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
