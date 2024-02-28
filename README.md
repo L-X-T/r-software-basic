@@ -1,10 +1,10 @@
 # Angular Architects - Essentials Workshop
 
-This project was originally generated with the [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2 by [@Manfred Steyer](https://twitter.com/ManfredSteyer) and has since been improved and update by [@LX_T](https://twitter.com/LX_T), currently using Angular V17.
+This special Angular Essentials Workshop for Raiffeisen Software was originally generated with the [Angular CLI](https://github.com/angular/angular-cli) by [@Manfred Steyer](https://twitter.com/ManfredSteyer) and has since been improved and updated by [@LX_T](https://twitter.com/LX_T), currently using Angular V17.3.
 
 ## Slides
 
-You'll find the workshop slides in the `slides` directory. 
+You'll find the workshop slides in the `slides` directory.
 
 ## Exercises
 
@@ -14,9 +14,13 @@ You'll find the workshop labs in the `labs` directory.
 
 You'll find a free ebook by my collegue Manfred Steyer in the `book` directory.
 
+## Installation
+
+Run `npm i` or `yarn` to install all dependencies.
+
 ## Development
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Run `ng s` for a dev server. Navigate to `http://localhost:4200/`.
 
 ## Code scaffolding
 
@@ -34,6 +38,10 @@ Run `ng test` to execute the unit tests via [JEST](https://jestjs.io).
 
 Run `ng e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
 
+## Installing Cypress manually
+
+If you cannot install Cypress try: [https://github.com/L-X-T/r-software-basic/edit/main/README.md](https://github.com/L-X-T/r-software-basic/blob/main/README-CYPRESS-INSTALL.md).
+
 ## Further help
 
-To get more help on the Angular CLI use `ng help`, contact your trainer [Alex T.](https://alex.thalhammer.name) or go check our website [Angular Architects](https://www.angulararchitects.io).
+Use `ng help`, contact your trainer [Alex T.](https://alex.thalhammer.name) or go check out our website [Angular Architects](https://www.angulararchitects.io).
