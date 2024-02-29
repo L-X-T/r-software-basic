@@ -26,17 +26,17 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
    })
    export class FlightCardComponent {
      @Input({ required: true }) item!: Flight;
-     @Input() isSelected = false;
-     @Output() isSelectedChange = new EventEmitter<boolean>();
+     @Input() selected = false;
+     @Output() selectedChange = new EventEmitter<boolean>();
 
      select(): void {
-       this.isSelected = true;
-       this.isSelectedChange.emit(this.isSelected);
+       this.selected = true;
+       this.selectedChange.emit(this.selected);
      }
 
      deselect(): void {
-       this.isSelected = false;
-       this.isSelectedChange.emit(this.isSelected);
+       this.selected = false;
+       this.selectedChange.emit(this.selected);
      }
    }
    ```
@@ -46,7 +46,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
 3. Open the template of this component (`flight-card.component.html`). Expand this file so that the map is displayed:
 
    ```typescript
-   <div class="card" [style.background-color]="isSelected ? 'rgb(204, 197, 185)' : 'white'">
+   <div class="card" [style.background-color]="selected ? 'rgb(204, 197, 185)' : ''">
      <div class="header">
        <h2 class="title">{{ item.from }} - {{ item.to }}</h2>
      </div>
@@ -55,10 +55,10 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
        <p>Flight-No.: #{{ item.id }}</p>
        <p>Date: {{ item.date | date:'dd.MM.yyyy HH:mm' }}</p>
        <p>
-         <button *ngIf="!isSelected" class="btn btn-default" (click)="select()">
+         <button *ngIf="!selected" class="btn btn-default" (click)="select()">
            Select
          </button>
-         <button *ngIf="isSelected" class="btn btn-default" (click)="deselect()">
+         <button *ngIf="selected" class="btn btn-default" (click)="deselect()">
            Deselect
          </button>
        </p>
@@ -109,7 +109,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
 
 6. Open the file _flight-search.component.html_. Comment out the tabular output of the flights found.
 
-7. Instead of the table, use the new element `flight-card` to display the flights found. To do this, create an explicit binding for the properties `item`, `isSelected` and the event `isSelectedChange`.
+7. Instead of the table, use the new element `flight-card` to display the flights found. To do this, create an explicit binding for the properties `item`, `selected` and the event `selectedChange`.
 
    <details>
    <summary>Show source</summary>
@@ -118,7 +118,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
    ```html
    <div class="row">
      <div *ngFor="let f of flights" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-       <app-flight-card [item]="f" [isSelected]="basket[f.id]" (isSelectedChange)="basket[f.id] = $event" />
+       <app-flight-card [item]="f" [selected]="basket[f.id]" (selectedChange)="basket[f.id] = $event" />
      </div>
    </div>
    ```
@@ -145,7 +145,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
 
 9. Test your solution.
 
-10. When calling the _FlightCardComponent_, use a two-way binding using the "Banana-in-a-Box syntax" instead of the bindings for _isSelected_ and _isSelectedChanged_.
+10. When calling the _FlightCardComponent_, use a two-way binding using the "Banana-in-a-Box syntax" instead of the bindings for _selected_ and _selectedChanged_.
 
     <details>
     <summary>Show source</summary>
@@ -154,7 +154,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
     ```html
     <div class="row">
       <div *ngFor="let f of flights" class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-        <app-flight-card [item]="f" [(isSelected)]="basket[f.id]" />
+        <app-flight-card [item]="f" [(selected)]="basket[f.id]" />
       </div>
     </div>
     ```
@@ -169,7 +169,7 @@ In this exercise you will first create the FlightCardComponent shown. Then you w
 Create a _StatusToggleComponent_ that receives the delayed flag of a flight via two-way binding and displays it as a link. Each time you click on this link, the status should be changed. The component should be able to be called in the template of the FlightCardComponent as follows:
 
 ```html
-<app-flight-status-toggle [(isDelayed)]="item.delayed" />
+<app-flight-status-toggle [(delayed)]="item.delayed" />
 ```
 
 ### Bonus: Content Projection \*\*
@@ -223,7 +223,7 @@ In this bonus exercise you create the possibility of expanding the display of th
    ```html
    <app-flight-card [...]>
      <h3 class="top">Flight</h3>
-     <app-flight-status-toggle class="bottom" style="margin-left: 10px" [(isDelayed)]="f.delayed" />
+     <app-flight-status-toggle class="bottom" style="margin-left: 10px" [(delayed)]="f.delayed" />
    </app-flight-card>
    ```
 

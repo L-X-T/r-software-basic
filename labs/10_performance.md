@@ -141,7 +141,7 @@ In this exercise you will implement Preloading using Angular's `PreloadAllModule
 
      this.ngZone.runOutsideAngular(() => {
        setTimeout(() => {
-         this.element.nativeElement.firstChild.style.backgroundColor = 'white';
+         this.element.nativeElement.firstChild.style.backgroundColor = this.selected ? 'rgb(204, 197, 185)' : '';
        }, 1000);
      });
    }

@@ -198,8 +198,8 @@ Follow the steps below:
      @Component({ selector: 'app-flight-card', template: '' })
      class FlightCardComponent {
        @Input() item!: Flight;
-       @Input() isSelected = false;
-       @Output() isSelectedChange = new EventEmitter<boolean>();
+       @Input() selected = false;
+       @Output() selectedChange = new EventEmitter<boolean>();
      }
 
      // tslint:disable-next-line: directive-selector
