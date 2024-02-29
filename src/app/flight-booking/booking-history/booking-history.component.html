@@ -13,3 +13,12 @@
     <p>No cancelled flights!</p>
   </app-tab>
 </app-tabbed-pane>
+
+<!-- directive -->
+<div>
+  <br />
+  <button (appClickWithWarning)="delete()" #cww="clickWithWarning">Delete</button>
+
+  <!-- use #cww -->
+  <button class="btn btn-danger" (click)="cww.handleClick(true)">Delete without asking questions!</button>
+</div>

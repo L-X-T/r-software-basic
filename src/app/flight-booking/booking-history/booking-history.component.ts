@@ -5,4 +5,8 @@ import { Component } from '@angular/core';
   templateUrl: './booking-history.component.html',
   styleUrl: './booking-history.component.css'
 })
-export class BookingHistoryComponent {}
+export class BookingHistoryComponent {
+  delete(): void {
+    console.debug('delete ...');
+  }
+}
