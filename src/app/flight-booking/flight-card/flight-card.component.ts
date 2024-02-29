@@ -9,39 +9,44 @@ import { Flight } from '../../entities/flight';
 })
 export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   debug = false;
+  // isInitialized = false;
 
   @Input({ required: true }) item!: Flight;
   @Input() selected = false;
 
   constructor() {
-    if (this.debug) {
-      console.warn('[FlightCardComponent - constructor()]');
-      console.log(this.item);
-      console.log('selected', this.selected);
-    }
-  }
-
-  ngOnChanges(): void {
-    if (this.debug) {
-      console.warn('[FlightCardComponent - ngOnChanges()]');
-      console.log(this.item);
-      console.log('selected', this.selected);
-    }
+    this.debugInputs('constructor');
   }
 
   ngOnInit(): void {
+    // this.init();
+    this.debugInputs('ngOnInit');
+  }
+
+  ngOnChanges(): void {
+    // this.init();
+    this.debugInputs('ngOnChanges');
+  }
+
+  ngOnDestroy(): void {
+    this.debugInputs('ngOnDestroy');
+  }
+
+  private debugInputs(hook: string): void {
     if (this.debug) {
-      console.warn('[FlightCardComponent - ngOnInit()]');
+      console.warn('[FlightCardComponent - ' + hook + '()]');
       console.log(this.item);
       console.log('selected', this.selected);
     }
   }
 
-  ngOnDestroy() {
-    if (this.debug) {
-      console.warn('[FlightCardComponent - ngOnDestroy()]');
-      console.log(this.item);
-      console.log('selected', this.selected);
+  /*private init(): void {
+    if (this.isInitialized) {
+      return;
     }
-  }
+
+    // init
+
+    this.isInitialized = true;
+  }*/
 }
