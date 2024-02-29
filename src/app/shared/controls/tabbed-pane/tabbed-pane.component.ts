@@ -1,5 +1,6 @@
-import { AfterContentInit, Component, ContentChildren, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, QueryList, ViewChild } from '@angular/core';
 import { TabComponent } from '../tab/tab.component';
+import { TabNavigatorComponent } from '../tab-navigator/tab-navigator.component';
 
 @Component({
   selector: 'app-tabbed-pane',
@@ -8,6 +9,8 @@ import { TabComponent } from '../tab/tab.component';
 })
 export class TabbedPaneComponent implements AfterContentInit {
   @ContentChildren(TabComponent) tabQueryList?: QueryList<TabComponent>;
+
+  @ViewChild('navigator') navigator?: TabNavigatorComponent;
 
   activeTab?: TabComponent;
   currentPage = 1;
@@ -32,5 +35,9 @@ export class TabbedPaneComponent implements AfterContentInit {
     }
 
     this.activeTab = active;
+  }
+
+  pageChange(page: number): void {
+    this.activate(this.tabs[page - 1]);
   }
 }
