@@ -9,8 +9,6 @@
 
 In this exercise you will validate the entries in the search form of the `FlightSearchComponent` with the built-in validators `required`, `minlength`, `maxlength` and `pattern` and output any validation errors.
 
-Before we start, please ensure that `noPropertyAccessFromIndexSignature` is set to false, if that flag is in your `tsconfig.json`. If the flag is not there at all, then your Angular project was created before Version 13 (strict mode) and then the default TypeScript value will be used which is false.
-
 You can use the following procedure as a guide:
 
 1. Make sure that the search fields are in a `form` element and set up a handle for this element. Also make sure that each input field has a `name` attribute.
@@ -55,7 +53,15 @@ You can use the following procedure as a guide:
 
 ## Reusable component for displaying the validation errors \*
 
-In order not to have to query the validation errors in the same way over and over again for each input field, it is advisable to use a central component. This can receive the property `errors` of the validated `FormControl`. For example, the expression `flightSearchForm.controls['from'].errors` returns the following object if both the validator `minlength` and a possibly self-written`city` validator fail:
+In order not to have to query the validation errors in the same way over and over again for each input field, it is advisable to use a central component.
+
+1. Let's start with generating the new component:
+
+```
+ng g c flight-booking/flight-validation-errors
+```
+
+2. The component can receive the property `errors` of the validated `FormControl`. For example, the expression `flightSearchForm.controls['from'].errors` returns the following object if both the validator `minlength` and a possibly self-written`city` validator fail:
 
 ```json
 {
@@ -67,7 +73,7 @@ In order not to have to query the validation errors in the same way over and ove
 }
 ```
 
-Write a component that receives this `errors` object (`@Input({ required: true }) errors?: ValidationErrors | null = null;`) and outputs an error message for each of the errors in it. To check whether this object exists and whether it indicates a specific error, \*ngIf can be used:
+3. Implement the component, so that it receives this `errors` object (`@Input({ required: true }) errors: ValidationErrors | null = null;`) and outputs an error message for each of the errors in it. Please note that `null` is used internally when there are no errors. To check whether this object exists and whether it indicates a specific error, `*ngIf` can be used:
 
 ```html
 <ng-container *ngIf="errors">
@@ -79,7 +85,9 @@ Write a component that receives this `errors` object (`@Input({ required: true }
 </ng-container>
 ```
 
-This component should be able to be called up as follows:
+4. To make this component reusable for different fields, you might want to add another input for the field name like (`@Input() fieldLabel = 'Field';`). Now you can also use the same component for the `to` field and also later for Reactive Forms.
+
+5. This component should be able to be called up as follows:
 
 ```html
 <div class="form-group">
@@ -89,12 +97,10 @@ This component should be able to be called up as follows:
   <app-flight-validation-errors
     *ngIf="flightSearchForm.controls['from']"
     [errors]="flightSearchForm.controls['from'].errors"
-    label="From"
+    fieldLabel="From"
   />
 </div>
 ```
-
-The errors type should be: `@Input({ required: true }) errors: ValidationErrors | null = null`. To make this component reusable for different fields, you might want to add another input for the field name like (`@Input() label = 'Field';`). Now you can also use the same component for the `to` field and also later for Reactive Forms.
 
 ## Bonus: When to show errors
 
