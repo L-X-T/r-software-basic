@@ -9,7 +9,7 @@ import { Flight } from '../../entities/flight';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
-  debug = true;
+  debug = false;
   // isInitialized = false;
 
   @Input({ required: true }) item!: Flight;
@@ -57,7 +57,9 @@ export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   blink(): void {
     // Dirty Hack used to visualize the change detector
     // let originalColor = this.elementRef.nativeElement.firstChild.style.backgroundColor;
-    this.elementRef.nativeElement.firstChild.style.backgroundColor = 'crimson';
+    if (this.elementRef.nativeElement.firstChild.style) {
+      this.elementRef.nativeElement.firstChild.style.backgroundColor = 'crimson';
+    }
     //              ^----- DOM-Element
 
     this.ngZone.runOutsideAngular(() => {

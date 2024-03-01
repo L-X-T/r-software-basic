@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+
 import { FlightLookaheadComponent } from './flight-lookahead.component';
 
 describe('FlightLookaheadComponent', () => {
@@ -8,10 +11,10 @@ describe('FlightLookaheadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule, ReactiveFormsModule],
       declarations: [FlightLookaheadComponent]
-    })
-    .compileComponents();
-    
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FlightLookaheadComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

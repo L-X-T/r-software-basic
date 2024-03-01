@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { SharedModule } from '../../shared.module';
+
 import { TabComponent } from './tab.component';
+import { TabbedPaneComponent } from '../tabbed-pane/tabbed-pane.component';
 
 describe('TabComponent', () => {
   let component: TabComponent;
@@ -8,10 +11,11 @@ describe('TabComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [TabComponent]
-    })
-    .compileComponents();
-    
+      imports: [SharedModule],
+      declarations: [TabComponent],
+      providers: [TabbedPaneComponent]
+    }).compileComponents();
+
     fixture = TestBed.createComponent(TabComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
