@@ -14,7 +14,7 @@ describe('App', () => {
   });
 
   it('should do an implicit subject assertion', () => {
-    cy.get('.sidebar-wrapper ul.nav > li:last-child > a > p').should('contain.text', 'Hide Basket');
+    cy.get('.sidebar-wrapper ul.nav > li:last-child > a > p').should('contain.text', 'Booking History');
   });
 
   it('should count the nav entries', () => {
