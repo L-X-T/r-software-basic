@@ -1,6 +1,6 @@
 # Angular Architects - Essentials Workshop
 
-This special Angular Essentials Workshop for Raiffeisen Software was originally generated with the [Angular CLI](https://github.com/angular/angular-cli) by [@Manfred Steyer](https://twitter.com/ManfredSteyer) and has since been improved and updated by [@LX_T](https://twitter.com/LX_T), currently using Angular V17.3.
+This special Angular Essentials Workshop for Raiffeisen Software was originally generated with the [Angular CLI](https://github.com/angular/angular-cli) by [@Manfred Steyer](https://twitter.com/ManfredSteyer) and has since been improved and updated by [@LX_T](https://twitter.com/LX_T), currently using Angular V17.3.3.
 
 ## Slides
 
@@ -38,9 +38,21 @@ Run `ng test` to execute the unit tests via [JEST](https://jestjs.io).
 
 Run `ng e2e` to execute the end-to-end tests via [Cypress](https://www.cypress.io/).
 
-## Installing Cypress manually
+### HowTo install cypress bypassing your Proxy
 
-If you cannot install Cypress try: [https://github.com/L-X-T/r-software-basic/edit/main/README.md](https://github.com/L-X-T/r-software-basic/blob/main/README-CYPRESS-INSTALL.md).
+If you have problems installing Cypress please try this workaround:
+
+1. Remove these two lines `"cypress": "^13.7.2",` and `"@cypress/schematic": "^2.5.1",` from the `devDependencies` your `package.json` and then run `npm i` (or `yarn`).
+
+2. Download cypress.zip from here: https://docs.cypress.io/guides/getting-started/installing-cypress#Direct-download
+
+3. In your terminal / prompt run this command: `CYPRESS_INSTALL_BINARY=~/Downloads/cypress.zip npm install cypress --save-dev`
+
+4. In your `package.json` re-add this to your `devDependencies`: `"@cypress/schematic": "^2.5.1",`
+
+5. Run `npm i` (or `yarn`) once more.
+
+6. Test via `ng s` and `ng e2e` (in two separate terminals).
 
 ## Further help
 

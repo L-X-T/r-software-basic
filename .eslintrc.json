@@ -4,10 +4,6 @@
   "overrides": [
     {
       "files": ["*.ts"],
-      "parserOptions": {
-        "project": ["tsconfig.json"],
-        "createDefaultProgram": true
-      },
       "extends": [
         "eslint:recommended",
         "plugin:@angular-eslint/recommended",
@@ -53,14 +49,20 @@
           {
             "endOfLine": "auto"
           }
-        ],
-        "valid-typeof": "error"
+        ]
       }
     },
     {
       "files": ["*.html"],
-      "extends": ["plugin:@angular-eslint/template/recommended"],
-      "rules": {}
+      "extends": ["plugin:@angular-eslint/template/recommended", "plugin:@angular-eslint/template/accessibility"],
+      "rules": {
+        "@angular-eslint/template/attributes-order": "off",
+        "@angular-eslint/template/button-has-type": "off",
+        "@angular-eslint/template/prefer-control-flow": "off",
+        "@angular-eslint/template/prefer-ngsrc": "off",
+        "@angular-eslint/template/prefer-self-closing-tags": "warn",
+        "@angular-eslint/template/use-track-by-function": "off"
+      }
     }
   ]
 }
