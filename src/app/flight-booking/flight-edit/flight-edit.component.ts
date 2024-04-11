@@ -1,5 +1,5 @@
 import { Component, DestroyRef, EventEmitter, inject, Input, OnChanges, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
@@ -12,11 +12,15 @@ import { validateCity } from '../shared/validation/city-validator';
 import { validateAsyncCity } from '../shared/validation/async-city-validator';
 import { validateRoundTrip } from '../shared/validation/round-trip-validator';
 import { PATTERN } from '../../shared/global';
+import { FlightValidationErrorsComponent } from '../flight-validation-errors/flight-validation-errors.component';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-flight-edit',
   templateUrl: './flight-edit.component.html',
-  styleUrls: ['./flight-edit.component.css']
+  styleUrls: ['./flight-edit.component.css'],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, NgIf, FlightValidationErrorsComponent]
 })
 export class FlightEditComponent implements OnChanges {
   @Input() flight?: Flight | null;

@@ -8,7 +8,7 @@ describe('FlightValidationErrorsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FlightValidationErrorsComponent]
+      imports: [FlightValidationErrorsComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FlightValidationErrorsComponent);

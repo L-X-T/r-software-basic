@@ -3,7 +3,8 @@ import { AbstractControl, FormGroup, NG_VALIDATORS, ValidationErrors, Validator 
 
 @Directive({
   selector: 'form[roundTrip]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: MultiFieldValidatorDirective, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: MultiFieldValidatorDirective, multi: true }],
+  standalone: true
 })
 export class MultiFieldValidatorDirective implements Validator {
   @Input() roundTrip: string[] = [];

@@ -8,7 +8,7 @@ describe('PassengerSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [PassengerSearchComponent]
+      imports: [PassengerSearchComponent]
     }).compileComponents();
   });
 

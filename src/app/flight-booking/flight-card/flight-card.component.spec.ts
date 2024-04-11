@@ -10,8 +10,7 @@ describe('FlightCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SharedModule],
-      declarations: [FlightCardComponent]
+      imports: [SharedModule, FlightCardComponent]
     }).compileComponents();
   });
 

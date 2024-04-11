@@ -11,8 +11,7 @@ describe('FlightLookaheadComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, ReactiveFormsModule],
-      declarations: [FlightLookaheadComponent]
+      imports: [HttpClientTestingModule, ReactiveFormsModule, FlightLookaheadComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FlightLookaheadComponent);

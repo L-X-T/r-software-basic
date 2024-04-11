@@ -3,7 +3,8 @@ import { AbstractControl, NG_VALIDATORS, ValidationErrors, Validator } from '@an
 
 @Directive({
   selector: 'input[city]',
-  providers: [{ provide: NG_VALIDATORS, useExisting: CityValidatorDirective, multi: true }]
+  providers: [{ provide: NG_VALIDATORS, useExisting: CityValidatorDirective, multi: true }],
+  standalone: true
 })
 export class CityValidatorDirective implements Validator {
   // validCities = ['Graz', 'Wien', 'Hamburg', 'Berlin'];

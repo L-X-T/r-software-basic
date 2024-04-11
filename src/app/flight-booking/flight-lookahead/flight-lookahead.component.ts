@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 import { combineLatest, interval, merge, Observable, of, Subject } from 'rxjs';
@@ -7,11 +7,14 @@ import { catchError, distinctUntilChanged, filter, map, pairwise, retry, startWi
 
 import { Flight } from '../../entities/flight';
 import { handleInput } from '../../shared/operators/handle-input';
+import { AsyncPipe, DatePipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-flight-lookahead',
   templateUrl: './flight-lookahead.component.html',
-  styleUrls: ['./flight-lookahead.component.css']
+  styleUrls: ['./flight-lookahead.component.css'],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, NgIf, NgFor, AsyncPipe, DatePipe]
 })
 export class FlightLookaheadComponent implements OnInit {
   fromControl = new FormControl('', { nonNullable: true });

@@ -8,7 +8,7 @@ describe('FlightStatusToggleComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FlightStatusToggleComponent]
+      imports: [FlightStatusToggleComponent]
     }).compileComponents();
   });
 

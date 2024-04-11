@@ -12,8 +12,7 @@ describe('AirportsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, SharedModule],
-      declarations: [AirportsComponent]
+      imports: [HttpClientTestingModule, SharedModule, AirportsComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(AirportsComponent);

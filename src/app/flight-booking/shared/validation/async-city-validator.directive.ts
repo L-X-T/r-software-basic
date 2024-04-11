@@ -14,7 +14,8 @@ import { FlightService } from '../../../services/flight.service';
       useExisting: AsyncCityValidatorDirective,
       multi: true
     }
-  ]
+  ],
+  standalone: true
 })
 export class AsyncCityValidatorDirective implements AsyncValidator {
   private readonly flightService = inject(FlightService);

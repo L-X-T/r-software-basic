@@ -1,12 +1,15 @@
 import { ChangeDetectionStrategy, Component, ElementRef, inject, Input, NgZone, OnChanges, OnDestroy, OnInit } from '@angular/core';
 
 import { Flight } from '../../entities/flight';
+import { DatePipe, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-flight-card',
   templateUrl: './flight-card.component.html',
   styleUrls: ['./flight-card.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [NgIf, DatePipe]
 })
 export class FlightCardComponent implements OnInit, OnChanges, OnDestroy {
   debug = false;

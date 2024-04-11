@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
+  standalone: true,
   templateUrl: 'navbar.component.html',
   styleUrls: ['navbar.component.css']
 })
@@ -11,7 +12,7 @@ export class NavbarComponent {
   sidebarToggle(): void {
     const body = document.getElementsByTagName('body')[0];
 
-    if (this.sidebarVisible == false) {
+    if (this.sidebarVisible === false) {
       body.classList.add('nav-open');
       this.sidebarVisible = true;
     } else {

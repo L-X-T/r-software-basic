@@ -8,14 +8,7 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "css",
-          "standalone": false,
           "changeDetection": "OnPush"
-        },
-        "@schematics/angular:directive": {
-          "standalone": false
-        },
-        "@schematics/angular:pipe": {
-          "standalone": false
         }
       },
       "root": "",

@@ -1,18 +1,48 @@
 import { Component, DestroyRef, inject, OnDestroy, OnInit, signal, ViewChild } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { NgForm } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 
 import { Flight } from '../../entities/flight';
 import { FlightService } from '../../services/flight.service';
-import { BehaviorSubject, Observable, Observer, Subject, Subscription } from 'rxjs';
-import { share, takeUntil } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Observer, Subscription } from 'rxjs';
+import { share } from 'rxjs/operators';
 import { PATTERN } from '../../shared/global';
+import { CityPipe } from '../../shared/pipes/city.pipe';
+import { FlightEditComponent } from '../flight-edit/flight-edit.component';
+import { RouterLink } from '@angular/router';
+import { FlightStatusToggleComponent } from '../flight-status-toggle/flight-status-toggle.component';
+import { FlightCardComponent } from '../flight-card/flight-card.component';
+import { CityValidatorDirective } from '../shared/validation/city-validator.directive';
+import { FlightValidationErrorsComponent } from '../flight-validation-errors/flight-validation-errors.component';
+import { AsyncPipe, DatePipe, JsonPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncCityValidatorDirective } from '../shared/validation/async-city-validator.directive';
+import { AsyncMultiFieldValidatorDirective } from '../shared/validation/async-multi-field-validator.directive';
+import { MultiFieldValidatorDirective } from '../shared/validation/multi-field-validator.directive';
 
 @Component({
   selector: 'app-flight-search',
   templateUrl: './flight-search.component.html',
-  styleUrls: ['./flight-search.component.css']
+  styleUrls: ['./flight-search.component.css'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    MultiFieldValidatorDirective,
+    AsyncMultiFieldValidatorDirective,
+    AsyncCityValidatorDirective,
+    NgIf,
+    FlightValidationErrorsComponent,
+    CityValidatorDirective,
+    NgFor,
+    FlightCardComponent,
+    FlightStatusToggleComponent,
+    RouterLink,
+    FlightEditComponent,
+    AsyncPipe,
+    JsonPipe,
+    DatePipe,
+    CityPipe
+  ]
 })
 export class FlightSearchComponent implements OnInit, OnDestroy {
   @ViewChild('flightSearchForm') flightSearchForm?: NgForm;

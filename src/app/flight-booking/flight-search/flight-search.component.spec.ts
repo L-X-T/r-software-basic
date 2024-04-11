@@ -34,17 +34,17 @@ describe('Unit test: flight-search.component', () => {
     component.onSearch();
 
     const httpTestingController = TestBed.inject(HttpTestingController);
-    const req = httpTestingController.expectOne(
-      'http://www.angular.at/api/flight?from=Graz&to=Hamburg'
-    );
+    const req = httpTestingController.expectOne('http://www.angular.at/api/flight?from=Graz&to=Hamburg');
     // req.request.method === 'GET'
 
-    req.flush([{
-      id: 22,
-      from: 'Graz',
-      to: 'Hamburg',
-      date: ''
-    }]);
+    req.flush([
+      {
+        id: 22,
+        from: 'Graz',
+        to: 'Hamburg',
+        date: ''
+      }
+    ]);
 
     expect(component.flights.length).toBe(1);
   });

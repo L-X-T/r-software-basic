@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QuicklinkStrategy } from 'ngx-quicklink';
+import { AirportsComponent } from './components/airports/airports.component';
 
 const appRoutes: Routes = [
   {
@@ -12,11 +13,15 @@ const appRoutes: Routes = [
   {
     path: 'flight-booking',
     // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-    loadChildren: () => import('./flight-booking/flight-booking.module').then((m) => m.FlightBookingModule)
+    loadChildren: () => import('./flight-booking/flight-booking.routes')
   },
   {
     path: 'home',
     component: HomeComponent
+  },
+  {
+    path: 'airports',
+    component: AirportsComponent
   },
   {
     path: '**',

@@ -12,8 +12,7 @@ describe('FlightEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule],
-      declarations: [FlightEditComponent]
+      imports: [HttpClientTestingModule, RouterTestingModule, ReactiveFormsModule, FlightEditComponent]
     }).compileComponents();
 
     fixture = TestBed.createComponent(FlightEditComponent);

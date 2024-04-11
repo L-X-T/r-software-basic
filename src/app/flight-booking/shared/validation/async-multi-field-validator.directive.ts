@@ -13,7 +13,8 @@ import { FlightService } from '../../../services/flight.service';
       useExisting: AsyncMultiFieldValidatorDirective,
       multi: true
     }
-  ]
+  ],
+  standalone: true
 })
 export class AsyncMultiFieldValidatorDirective implements AsyncValidator {
   @Input() asyncMulti: string[] = [];

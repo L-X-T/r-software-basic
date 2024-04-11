@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { PassengerSearchComponent } from './passenger-search/passenger-search.component';
 import { FlightEditComponent } from './flight-edit/flight-edit.component';
@@ -29,8 +28,4 @@ const flightBookingRoutes: Routes = [
   }
 ];
 
-@NgModule({
-  imports: [RouterModule.forChild(flightBookingRoutes)],
-  exports: [RouterModule]
-})
-export class FlightBookingRoutingModule {}
+export default flightBookingRoutes;
